@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cuenta regresiva al 25/08/2025</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #111;
+      color: #fff;
+      font-family: Arial, sans-serif;
+    }
+
+    #mensaje {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    #contador {
+      font-size: 4em;
+      font-weight: bold;
+      color: #00ffcc;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <div id="mensaje">RUEDO</div>
+    <div id="contador">...</div>
+    <div id="mensaje">para el 25/08/2025</div>
+  </div>
+
+  <script>
+    function actualizarContador() {
+      const ahora = new Date();
+      const objetivo = new Date('2025-08-25T00:00:00');
+      const diferencia = objetivo - ahora;
+
+      if (diferencia <= 0) {
+        document.getElementById('contador').textContent = "¡Es hoy!";
+        return;
+      }
+
+      const segundosTotales = Math.floor(diferencia / 1000);
+      const dias = Math.floor(segundosTotales / (3600 * 24));
+      const horas = Math.floor((segundosTotales % (3600 * 24)) / 3600);
+      const minutos = Math.floor((segundosTotales % 3600) / 60);
+      const segundos = segundosTotales % 60;
+
+      document.getElementById('contador').textContent =
+        `${dias} días, ${horas} horas, ${minutos} minutos y ${segundos} segundos`;
+    }
+
+    // Actualiza el contador cada segundo
+    setInterval(actualizarContador, 1000);
+    actualizarContador(); // Llamada inicial
+  </script>
+</body>
+</html>
